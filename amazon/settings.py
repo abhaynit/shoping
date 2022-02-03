@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-@!itg4+l3!*dn4tf(7)fzw$kq4*@eplbmx=5aaei16_tb7r5+(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','abhayshoping.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -131,8 +131,8 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
-STATIC_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = (BASE_DIR/'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
