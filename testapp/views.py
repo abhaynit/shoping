@@ -384,7 +384,7 @@ def place_order(request,it):
         
     pdf.output('simple_table.pdf') 
 
-    k = sendpdf ('abhaypy3@gmail.com',request.user.email,'Benayangla','This mail is from ABHAY website','list the item you have bought','simple_table','E:/old/old e drive/django/amazon/')
+    k = sendpdf ('abhaypy3@gmail.com',request.user.email,'Benayangla','This mail is from ABHAY website','list the item you have bought','simple_table','./')
     k.email_send()
     return HttpResponseRedirect('/ordered_placed/')
 
@@ -480,7 +480,7 @@ def shop_now(request,it,shp):
         
     pdf.output('simple_table.pdf') 
 
-    k = sendpdf ('abhaypy3@gmail.com',request.user.email,'Benayangla','This mail is from ABHAY website','list the item you have bought','simple_table','E:/old/old e drive/django/amazon/')
+    k = sendpdf ('abhaypy3@gmail.com',request.user.email,'Benayangla','This mail is from ABHAY website','list the item you have bought','simple_table','./')
     k.email_send()
     return HttpResponseRedirect('/ordered_placed/')
 
@@ -631,7 +631,7 @@ def bookmovie(request,chall,movi,val):
         pdf.output('movie_ticket.pdf') 
         print(request.user.email)
 
-        k = sendpdf ('abhaypy3@gmail.com',request.user.email,'Benayangla','This mail is from ABHAY website','list the item you have bought','movie_ticket','E:/django/amazon/')
+        k = sendpdf ('abhaypy3@gmail.com',request.user.email,'Benayangla','This mail is from ABHAY website','list the item you have bought','movie_ticket','./')
         k.email_send()
         final_ticket = select_halls.objects.get(movie = mov_ticket.objects.get(mname=movi),hall=cinema_hall.objects.get(hname=chall))
         final_ticket.seat = initail_ticket-int(val)
