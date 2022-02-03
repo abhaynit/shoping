@@ -121,7 +121,7 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True  #tls is  used for security purpose
 EMAIL_HOST_USER = "abhaypy3@gmail.com"
-EMAIL_HOST_PASSWORD = "asdfgtyuio"
+EMAIL_HOST_PASSWORD = "Benayangla"
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 
