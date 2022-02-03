@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}
+email
+{% endblock %}
+
+{% block body %} 
+
+{% if messages %}
+{% for message in messages %}
+    <small {% if message.tags %} class="{{message.tags}} text-center" {% endif %}}> <h2>{{message | upper}}</h2></small>
+{% endfor %}
+
+{% endif %}
+
+<form  class= "mt-5 text-center"action="{% url 'validate' otp uname upass emai %}" method="post">
+    {% csrf_token %}
+
+    
+
+    enter your otp <input type="number" name="otp1" id="">
+    <br>
+    <input type="submit" value="submit">
+    <input type="reset" value="clear">
+</form>
+
+{% endblock %}

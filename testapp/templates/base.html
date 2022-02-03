@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/ab.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/abd.css' %}">
+    <link rel="stylesheet" href="{% static 'css/border.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+          <a class="navbar-brand btn btn-secondary" href="/"> <strong><i class="fab fa-amilia"></i> <i class="fab fa-angular"></i></strong> </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active  btn btn-info" aria-current="page" href="{% url 'home' %}"> <strong><i class="fa fa-home"></i></strong> </a>
+              </li>
+              &nbsp
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white " href="#" id="electronicsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 <strong>Electronics</strong> 
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="electronicsDropdown">
+                  <li><a class="dropdown-item" href="{% url 'utility' 'M' %}"> <strong>Mobile</strong> </a></li>
+                  <li><a class="dropdown-item" href="{% url 'utility' 'L' %}"><strong> Laptop</strong> </a></li>
+                </ul>
+              </li>
+              &nbsp
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white " href="#" id="fashionDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 <strong>Fashion</strong> 
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="fashionDropdown">
+                  <li><a class="dropdown-item" href="{% url 'utility' 'TW' %}"> <strong>Top Wear</strong> </a></li>
+                  <li><a class="dropdown-item" href="{% url 'utility' 'BW' %}"> <strong>Bottom Wear</strong> </a></li>
+                  <li><a class="dropdown-item" href="{% url 'utility' 'S' %}"> <strong>Shoe</strong> </a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white " href="#" id="electronicsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 <strong>Entertainment </strong> 
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="electronicsDropdown">
+                  <li><a class="dropdown-item" href="{% url 'movie' %}"> <strong>Movie Ticket</strong> </a></li>
+                  <li><a class="dropdown-item" href="{% url 'corona' %}"> <strong>Corona Cases</strong> </a></li>
+                </ul>
+              </li>
+            </ul>
+            
+            <form class="d-flex ">
+              <input class="form-control  me-2" type="search" placeholder="Search" aria-label="Search" disabled>
+              <button class="btn btn-warning disabled" type="submit">S</button>
+            </form>
+            
+            <div>
+             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if request.user.is_authenticated %}
+              <li class="nav-item dropdown mx-2">
+                 <a class="nav-link dropdown-toggle text-white btn btn-warning" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <strong>{{request.user | upper}}</strong> 
+                 </a>
+                 <ul class="dropdown-menu " aria-labelledby="profileDropdown">
+                   <li><a class="dropdown-item " href="{% url 'profile' %}">Profile</a></li>
+                   <li><a class="dropdown-item" href="{% url 'ordered_placed' %}">Orders</a></li>
+                   <li><a class="dropdown-item" href="{% url 'change_password' %}">Change Password</a></li>
+                   <li><a class="dropdown-item" href="{% url 'address' %}">Address</a></li>
+                 </ul>
+               </li>
+               
+               <li class="nav-item mx-2">
+                <a href="{% url 'cart' %}" class="nav-link text-white btn btn-info "> <strong><span class="badge bg-danger">{{cart}}</span>Cart</strong> </a>
+               </li>
+               {% endif %}
+               <li class="nav-item mx-2">
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="nav-link text-white btn btn-danger"> <strong>Logout </strong> </a>
+                {% else %}
+                <a href="{% url 'login' %}" class="nav-link text-white btn btn-info"> <strong>Login</strong> </a>
+                {% endif %}
+
+               </li>
+               <li class="nav-item mx-2">
+                   {% if request.user.is_authenticated %}
+                    {% else %}
+                    <a href="{% url 'register' %}" class="nav-link text-white btn btn-warning"> <strong>Registration</strong> </a>
+                    {% endif %}
+               </li>
+              
+             </ul>
+            </div>
+          </div>
+        </div>
+       </nav>
+
+    {% block poster %}{%endblock%}
+    {% block body%}{% endblock %}
+   
+    
+
+
+
+    <!-- Start Footer -->
+    <footer class="container-fluid bg-dark text-center p-2 mt-5">
+        <small class="text-white">Copyright &copy; 2021 || Designed By ABHAY KUMAR || </small>
+        <img src="{% static 'app/images/payment.png' %}" alt="" srcset="" class="img-fluid" height="2px">
+    </footer> <!-- End Footer -->
+
+    
+
+
+
+     <!--from here i have written the javascript bootstrap code  -->
+
+
+
+    
+
+     <script src="{% static 'js/jquery.js' %}"></script>
+     <script src="{% static 'js/popper.js' %}"></script>
+     <script src="{% static 'js/all.min.js' %}"></script>
+     <script src="{% static 'js/bootstrap.js' %}"></script>
+
+     
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+
+    <!--FONT AWESOME USING CSS-->
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+
+     <script type="text/javascript">
+
+      $('.owl-carousel').owlCarousel({
+          loop:true,
+          //margin is used to 
+          margin:10,
+          // if nav == false then the arrow will be deleted
+          nav:false,
+          // autoplay is used to make the movement automatically
+          autoplay : true,
+          autoplayTimeout : 1000,
+          //stagepadding is used to display the some part of the last and the first image
+          stagePadding : 50,
+          //if i will write dots : flase then dots will be removed
+          dots : false,
+          auto : true,
+          responsive:{
+              // this 0 , 600 ,1000 are the screen resolution we can change the  no of item 
+              0:{
+                  items:1
+              },
+              600:{
+                  items:3
+              },
+              1000:{
+                  items:5
+              }
+          }
+      })
+
+    </script>
+
+   
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}
+{{nam}}
+{% endblock %}
+
+{% block body %} 
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-sm-4 offset-4">
+            <div class="card text-center">
+                <div class="card-header alert alert-info">
+                  <strong>YOU ARE LATE</strong>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Have look into another hall</h5>
+                  <a href="{% url 'movie' %}" class="btn btn-primary">RETURN BACK</a>
+                </div>
+                <div class="card-footer text-muted">
+                  <strong>Better luck next time</strong>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

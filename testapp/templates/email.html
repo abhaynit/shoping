@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}
+email
+{% endblock %}
+
+{% block body %} 
+
+<form class="mt-5 text-center" action="{% url 'send' %}" method="post" download>
+    {% csrf_token %}
+    to <input type="email" name="toemail" id="">
+    <br>
+    <textarea name="content" id="" cols="30" rows="10"></textarea><br>
+    <input type="submit" value="send">
+    <input type="reset" value="clear">
+</form>
+{% endblock %}

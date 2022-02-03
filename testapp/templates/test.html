@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+<form action="" method="post">
+    {% csrf_token %}
+
+</form>
+<div class="row">
+    {% for fm in form %}
+    <div class="col-sm-1 offset-3 mt-5">{{fm.label_tag}}</div>
+    <div class="col-sm-5 mt-5">
+      <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+    </div><br>
+    {% endfor %}
+  </div>
+
+
+{% endblock %}

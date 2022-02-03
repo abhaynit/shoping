@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}
+{{nam}}
+{% endblock %}
+
+{% block body %} 
+<div class="container">    
+    <div class="row mt-5">
+
+        <div class="col-sm-4">
+
+            <div class="card text-center">
+                <div class="card-header">
+                  <strong>{{chall |upper}}</strong>
+                </div>
+                <div class="card-body">
+                  {% if seat == 0 %}
+                  <h5 class="card-title alert alert-info"> <strong>NOT AVAILABLE  </strong> </h5>
+                  {% else %}
+                  <h5 class="card-title alert alert-info"> <strong>AVAILABLE : {{seat}}</strong> </h5>
+                  {% endif %}
+                  <p class="card-text">Hurry up this data may change at the time of booking</p>
+                  <a href="{% url 'userlist' chall movi 1 %}" class="btn btn-primary">Refresh</a>
+                </div>
+                <div class="card-footer text-muted">
+                    Updated time  {{ tame|date:'d-b H:i' }}
+                </div>
+              </div>
+
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="alert alert-primary text-center" > <strong>NO OF CUSTOMER</strong> </div>
+
+                 <!--<input type="number" name="nuser" id="">-->
+                 <input type="number" class="form-control" name = "nuser" id="" placeholder="ENTER THE NO OF CUSTOMER">
+                {%  if seat  %}
+                 <div class="text-center mt-5"> <button type="submit" class="btn btn-warning">PROCEED</button></div>
+                {% else %}
+                <div class="text-center mt-5"> <button type="submit" class="btn btn-danger" disabled >SORRY</button></div>
+                {% endif %}
+            </form>
+     
+        </div>
+
+       <div class="col-sm-5 offset-3">
+           {% if  item %}
+           <div class="alert alert-warning text-center"><strong>ENTER THE NAME OF CUSTOMER</strong> </div>
+        <form action="{% url 'bookmovie' chall movi val %}" method="POST">
+            {% csrf_token %}
+             {% for i in item %}
+             <div class="row">
+                 <div class="col-sm-3 text-center">
+                    <div class="alert alert-danger" > <strong>{{forloop.counter}}.NAME</strong> </div> 
+                 </div>
+
+                 <div class="col-sm-4 mt-3">
+                    <!--<input type="text" name="{{i}}" id=""><br>-->
+                    <input type="text" class="form-control" name = "{{i}}" id="" placeholder="ENTER {{forloop.counter}} NAME">
+                 </div>
+             </div>
+            
+             {% endfor %}
+             <div class="text-center"><button type="submit" class="btn btn-success">Sign in</button></div>
+             
+        </form>
+            {% else %}
+            <div class="alert alert-info text-center">PLEASE SELECT THE NO OF CUSTOMER</div>
+            {% endif %}
+       </div>
+
+       
+       
+        
+    </div>
+</div>
+
+
+{% endblock %}

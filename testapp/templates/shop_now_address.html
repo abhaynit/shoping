@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}
+{{nam}}
+{% endblock %}
+
+{% block body %} 
+<div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+
+        <div class="card mt-2" style="width: 18rem;">
+          {% for i in profile %}
+                <img src="{{i.im.url}}" class="card-img-top rounded-circle " style="height: 200px;" >
+          {% endfor %}
+          <div class="card-body">
+            <h5 class="card-title alert alert-info text-center">ADDRESS INFO</h5>
+            <hr>
+          </div>
+          <ul class="list-group list-group-flush">
+           <li class="list-group-item bg-info text-center">NAME &nbsp:&nbsp {{request.user |upper}}</li>
+           </ul>
+           <div class="card-body text-center">
+            <a class="btn btn-primary " href="{% url 'addaddress' %}" class="card-link">ADD</a>
+            </div>
+        </div>
+      
+      </div>
+      
+      <div class=" col-sm-8  row  text-center mt-1">
+       
+        <div class="container">
+          <div class="row">
+            <div class="text-center"><h2 class="alert alert-info">{{nam}}</h2></div>
+            {% if item %}
+            {% for it in item %}
+          
+              <div class="col-sm-4 offset-1 mt-2 text-center ">  
+              
+                <div class="card" style="width: 18rem;">
+                  <div class="card-header bg-primary">
+                    {{forloop.counter}} &nbsp: &nbsp ADDRESS
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">CITY &nbsp : &nbsp {{it.city |upper}}</li>
+                    <li class="list-group-item">STATE &nbsp : &nbsp {{it.state |upper}}</li>
+                    <li class="list-group-item">ZIP CODE &nbsp : &nbsp {{it.zip_code |upper}}</li>
+                    <li class="list-group-item">STREET &nbsp : &nbsp {{it.street |upper}}</li>
+                    <li class="list-group-item">MOBILE NO &nbsp : &nbsp {{it.mobile |upper}}</li>
+                    <li class="list-group-item"><a class="btn btn-danger" href="{% url 'remove_ad' it.id %}">Remove</a> <a class="btn btn-info" href="{% url 'shop_now' it.id shp %}">Continue</a></li>
+                  </ul>
+                </div>
+              </div>
+
+          
+
+           
+            {% endfor %}
+
+            {% else %}
+            <div ><a class="btn btn-success text-center mt-5" href="{% url 'addaddress' %}">ADD ADDRESS </a></div>
+            {% endif %}
+         
+
+        </div>
+        
+        </div>
+      </div>
+
+<!--from here second row started-->
+
+      
+
+  </div>
+   
+</div>
+
+
+{% endblock %}

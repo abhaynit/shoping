@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{nam}}{% endblock %}
+
+{% block body %}
+
+<br><br>
+<div class="container">
+    <div class="text-center alert alert-warning"><h1>{{nam}}</h1></div>
+
+</div>
+  
+<div class="container text-center">
+    <div class="row">
+        <div class="col sm-1 ">
+            <div class="card mt-2" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title alert alert-success text-center">IMAGE</h5>
+                   <!--<p class="card-text">Thanks for shopping   </p>--> 
+                  </div>
+                  <hr>
+                {% for i in profile %}
+                <img src="{{i.im.url}}" class="card-img-top rounded-circle " style="height: 200px;" >
+                {% endfor %}
+                    <hr>
+                 <div class="card-body text-center">
+                  <a class="btn btn-warning " href="{% url 'add_image' %}" class="card-link">UPDATE</a>
+                  </div>
+              </div>
+        </div>
+                
+        <div class="col sm-8">
+            <form action="" method="POST" novalidate>
+                {% csrf_token %}
+                    
+                            {% for fm in form %}
+                            <div class="row">
+                                <div class="col sm-4 alert alert-info ">{{fm.label_tag}}</div>
+                                <div class="col sm-4">{{fm}}</div>
+                                <div class="col sm-4">
+                                    <div class="row">
+                                        <div class="col-sm-12  mb-3">{{fm.errors|striptags}}</div>
+                                    </div>
+                                </div>
+                            </div>        
+                            {% endfor %}
+                <div class="text-center"><input class="col-sm-3  btn btn-warning " type="submit" value="UPDATE"> </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}
+{{nam}}
+{% endblock %}
+
+{% block body %} 
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12 mt-3">
+        <div class="text-center alert alert-info"><h1>{{nam}}</h1></div>
+      </div>
+
+        {% for i in pic %}
+        
+        <div class="col-sm-3 mt-3">
+            <div class="col">
+                  <div class="card h-100">
+                    <a href="{% url 'hall' i.mname %}">
+                    <img src="{{i.image.url}}" class="card-img-top" alt="..." style="height: 200px;">
+                    
+                    <div class="card-body text-center">
+                      <strong><h5 class="card-title"><font color='red'>{{i.mname|upper}}</font></h5></strong>
+                     <strong><p class="card-text text-decoration-line-through">Original price : {{i.orig}} </p></strong> 
+                     <strong><p class="card-text"><font color='green'>Discounted price : {{i.disp}}</font> </p></strong>
+                      
+                    </div>
+                  </a>
+                    <div class="card-footer text-center">
+                      <small class="text-muted  "> <font color="brown">Updated time  {{ i.utm|date:'d-b H:i' }}</font> </small>
+                      <!--original format was   Y-m-d H:i  -->
+                    </div>
+                  </div>
+                </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}

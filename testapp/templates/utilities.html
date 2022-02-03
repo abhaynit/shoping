@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Filter{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="row">
+
+                <div class="card mt-5" style="width: 18rem;">
+                    <div class="card-header  text-center">
+                     <h2> FILTER</h2>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item"> <div class="col-sm-12 mt-1 mb-2 "> <a class="btn btn-danger" href="{% url 'filte' 3000 itype 0 %}">BELOW 3000</a></div></li>
+                      <li class="list-group-item"> <div class="col-sm-12  mb-2"> <a class="btn btn-danger" href="{% url 'filte' 5000 itype 0 %}">BELOW 5000</a></div></li>
+                      <li class="list-group-item"> <div class="col-sm-12  mb-2"> <a class="btn btn-danger" href="{% url 'filte' 10000 itype 1 %}">ABOVE 10000</a></div></li>
+                      <li class="list-group-item"> <div class="col-sm-12  mb-2"> <a class="btn btn-danger" href="{% url 'filte' 10000 itype 2 %}">LOW TO HIGH</a></div></li>
+                      <li class="list-group-item"> <div class="col-sm-12  mb-2"> <a class="btn btn-danger" href="{% url 'filte' 10000 itype 3 %}">HIGH TO LOW</a></div></li>
+                    </ul>
+                  </div>
+
+               
+            </div>
+
+            
+
+        </div>
+        <div class="col-sm-10 ">
+            <br>
+            <br>
+            <div class="row">
+               
+                {% if item %}
+                {% for it in item  %}
+                <div class="col-sm-3 mt-4 ">
+                    <div class="card br-warning" style="width: 13.6rem;">
+                       <a class=" btn btn-light " href="{% url 'detail' it.id %}"><img src="{{it.pic.url}}" class="card-img-top abd" >
+                        <div class="card-body">
+                          <p class="card-text"> <b> PRICE &nbsp : &nbsp {{it.price}}</b></p></a> 
+                        </div>
+                      </div>
+                </div> 
+                {% endfor %}
+                {% else %}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 offset-4">
+                            <div class="text-center alert alert-info ml-3"><strong><H2>NO ITEM IN THE RANGE</H2></strong> </div>
+                        </div>
+                    </div>
+                </div>
+               
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

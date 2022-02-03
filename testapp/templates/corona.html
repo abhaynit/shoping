@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}
+{{nam}}
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-3 offset-4">
+            <div class="alert alert-warning text-center"><strong>CORONA WORLD REPORT</strong></div>
+        </div>
+        <div class="col-sm-5">
+
+        </div>
+        {% for i in bd %}
+        <div class="col-sm-4">
+            <div class="card text-{{i.text}} bg-{{i.back}} mb-3" style="max-width: 18rem;">
+                <div class="card-header text-center"> <strong>{{i.first |upper}}</strong> </div>
+                <div class="card-body">
+                  <h2 class="card-title text-center"> <b>{{i.second}}</b> </h2>
+                </div>
+              </div>
+        </div>
+        
+        {% endfor %}
+
+
+        <div class="col-sm-3 offset-4">
+            <div class="alert alert-warning text-center"><strong>CORONA LIVE UPDATE INDIA</strong></div>
+        </div>
+        <div class="col-sm-5"> </div>
+        <div class="col-sm-4">
+            <div class="card text-danger bg-info mb-3" style="max-width: 18rem;">
+                <div class="card-header text-center"> <strong>TODAYS DATE</strong> </div>
+                <div class="card-body">
+                  <h2 class="card-title text-center"> <b>{{today_date}}</b> </h2>
+                </div>
+              </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="card text-warning bg-secondary mb-3" style="max-width: 18rem;">
+                <div class="card-header text-center"> <strong>NEW CASES</strong> </div>
+                <div class="card-body">
+                  <h2 class="card-title text-center"> <b>{{new_case}}</b> </h2>
+                </div>
+              </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="card text-primary bg-danger mb-3" style="max-width: 18rem;">
+                <div class="card-header text-center"> <strong>7 DAYS AVG</strong> </div>
+                <div class="card-body">
+                  <h2 class="card-title text-center"> <b>{{avg}}</b> </h2>
+                </div>
+              </div>
+        </div>
+
+
+    </div>
+</div> 
+
+{% endblock %}
