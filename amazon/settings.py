@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from unittest.mock import DEFAULT
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -122,7 +123,8 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True  #tls is  used for security purpose
 EMAIL_HOST_USER = "abhaypy3@gmail.com"
 EMAIL_HOST_PASSWORD = "aaaaaaaaaaa"
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+#EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+DEFAULT_FROM_EMAIL = "abhayshoping.herokuapp.com"
 
 
 # Static files (CSS, JavaScript, Images)
